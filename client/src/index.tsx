@@ -75,6 +75,9 @@ function GuitarTuner() {
       <ModuleHeader />
       <div className="flex-center mb-8 w-full flex-1 flex-col">
         <div className="before:bg-bg-700 relative top-8 w-full flex-1 transition-all before:absolute before:left-1/2 before:top-0 before:h-full before:w-0.5 before:-translate-x-1/2">
+          <span className="text-bg-500 absolute left-[calc(50%-18rem)] top-16 -translate-x-1/2 text-3xl">
+            ♭
+          </span>
           <div
             className={clsx(
               'absolute top-12 size-16 -translate-x-1/2 before:absolute before:-bottom-[2px] before:left-1/2 before:z-[-1] before:size-4 before:-translate-x-1/2 before:rotate-45',
@@ -134,6 +137,9 @@ function GuitarTuner() {
               )}
             </div>
           </div>
+          <span className="text-bg-500 absolute right-[calc(50%-18rem)] top-16 translate-x-1/2 text-3xl">
+            ♯
+          </span>
           <div className="border-bg-700 flex-center component-bg absolute bottom-14 left-1/2 -translate-x-1/2 flex-col gap-3 rounded-lg border-2 p-4">
             <span className="text-5xl">{note}</span>
             <span className="text-bg-500 text-2xl">
