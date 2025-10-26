@@ -1,7 +1,6 @@
 {
     "name": "guitar-tuner",
     "version": "0.0.0",
-    "description": "",
     "dependencies": {
         "@iconify/react": "^6.0.2",
         "@tanstack/react-query": "^5.90.2",
@@ -9,6 +8,7 @@
         "clsx": "^2.1.1",
         "dayjs": "^1.11.18",
         "lifeforge-ui": "workspace:*",
+        "pitchy": "^4.1.0",
         "react": "^19.2.0",
         "react-i18next": "^15.1.1",
         "react-toastify": "^11.0.5",
