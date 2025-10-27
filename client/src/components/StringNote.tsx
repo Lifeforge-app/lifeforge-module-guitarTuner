@@ -63,7 +63,7 @@ function StringNote({
   return (
     <button
       className={clsx(
-        'flex-center relative size-16 rounded-lg border-2 px-4 text-2xl font-medium tracking-wider',
+        'flex-center relative size-12 rounded-lg border-2 px-4 text-lg font-medium tracking-wider md:size-16 md:text-2xl',
         isChecked
           ? 'border-green-500 text-green-500'
           : 'component-bg-lighter-with-hover border-bg-500'

@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { toast } from 'react-toastify'
 
 import { frequencyToNote, getCentsDeviation } from '../utils/frequencyToNote'
 import { requestMicrophoneAccess } from '../utils/microphone'
@@ -7,8 +8,6 @@ import { usePitchDetection } from './usePitchDetection'
 
 export function useGuitarTuner() {
   const [isListening, setIsListening] = useState<boolean>(false)
-
-  const [error, setError] = useState<string>('')
 
   const {
     audioContextRef,
@@ -26,8 +25,6 @@ export function useGuitarTuner() {
 
   const startListening = async () => {
     try {
-      setError('')
-
       // Stop any existing listening session first
       if (isListening) {
         stopListening()
@@ -57,7 +54,7 @@ export function useGuitarTuner() {
 
       setIsListening(true)
     } catch (err) {
-      setError(
+      toast.error(
         err instanceof Error
           ? err.message
           : 'Failed to access microphone. Please check permissions.'
@@ -88,7 +85,6 @@ export function useGuitarTuner() {
     note,
     cents,
     isListening,
-    error,
     startListening,
     stopListening
   }

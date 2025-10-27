@@ -1,30 +1,38 @@
 import { Icon } from '@iconify/react'
 import clsx from 'clsx'
-import { Button, ModuleHeader } from 'lifeforge-ui'
-import { useEffect, useRef, useState } from 'react'
+import { Button, ModuleHeader, useModalStore } from 'lifeforge-ui'
+import { useCallback, useEffect, useRef, useState } from 'react'
 
+import SelectTuningModal from './components/SelectTuningModal'
 import StringNote from './components/StringNote'
+import { GUITAR_TUNINGS } from './constants/tuning'
 import { useGuitarTuner } from './hooks/useGuitarTuner'
 import { frequencyToNote } from './utils/frequencyToNote'
-
-const GUITAR_STRINGS = [82.41, 110.0, 146.83, 196.0, 246.94, 329.63]
 
 const CENTS_TOLERANCE = 3
 
 function GuitarTuner() {
-  const {
-    frequency,
-    note,
-    cents,
-    isListening,
-    error,
-    startListening,
-    stopListening
-  } = useGuitarTuner()
+  const open = useModalStore(state => state.open)
+
+  const { frequency, note, cents, isListening, startListening, stopListening } =
+    useGuitarTuner()
 
   const [tunedNotes, setTunedNotes] = useState<Set<string>>(new Set())
 
+  const [currentTuning, setCurrentTuning] = useState<number[]>([
+    82.41, 110.0, 146.83, 196.0, 246.94, 329.63
+  ]) // Standard Tuning EADGBE
+
   const tuningTimersRef = useRef<Map<string, NodeJS.Timeout>>(new Map())
+
+  const openSelectTuningModal = useCallback(() => {
+    open(SelectTuningModal, {
+      tuning: currentTuning,
+      onSelectTuning: (newTuning: number[]) => {
+        setCurrentTuning(newTuning)
+      }
+    })
+  }, [open, currentTuning])
 
   // Track when a note is in tune for 0.5 seconds
   useEffect(() => {
@@ -40,7 +48,7 @@ function GuitarTuner() {
 
     const isInTune = absCents < CENTS_TOLERANCE
 
-    if (isInTune && GUITAR_STRINGS.map(frequencyToNote).includes(note)) {
+    if (isInTune && currentTuning.map(frequencyToNote).includes(note)) {
       // Start timer if not already started
       if (!tuningTimersRef.current.has(note)) {
         const timer = setTimeout(() => {
@@ -58,7 +66,7 @@ function GuitarTuner() {
         tuningTimersRef.current.delete(note)
       }
     }
-  }, [note, cents, frequency, isListening])
+  }, [note, cents, frequency, isListening, currentTuning])
 
   // Cleanup timers on unmount or when stopping
   useEffect(() => {
@@ -70,11 +78,15 @@ function GuitarTuner() {
     }
   }, [isListening])
 
+  useEffect(() => {
+    stopListening()
+  }, [currentTuning])
+
   return (
     <>
       <ModuleHeader />
       <div className="flex-center mb-8 w-full flex-1 flex-col">
-        <div className="before:bg-bg-700 relative top-8 w-full flex-1 transition-all before:absolute before:left-1/2 before:top-0 before:h-full before:w-0.5 before:-translate-x-1/2">
+        <div className="before:bg-bg-700 relative top-0 w-full flex-1 transition-all before:absolute before:left-1/2 before:top-0 before:h-full before:w-0.5 before:-translate-x-1/2">
           <span className="text-bg-500 absolute left-[calc(50%-18rem)] top-16 -translate-x-1/2 text-3xl">
             ♭
           </span>
@@ -127,7 +139,7 @@ function GuitarTuner() {
               {frequency === 0 ? (
                 <></>
               ) : Math.abs(cents) <= CENTS_TOLERANCE &&
-                GUITAR_STRINGS.map(frequencyToNote).includes(note) ? (
+                currentTuning.map(frequencyToNote).includes(note) ? (
                 <Icon className="size-8" icon="tabler:check" />
               ) : (
                 <>
@@ -141,8 +153,8 @@ function GuitarTuner() {
             ♯
           </span>
           <div className="border-bg-700 flex-center component-bg absolute bottom-14 left-1/2 -translate-x-1/2 flex-col gap-3 rounded-lg border-2 p-4">
-            <span className="text-5xl">{note}</span>
-            <span className="text-bg-500 text-2xl">
+            <span className="text-3xl font-medium sm:text-5xl">{note}</span>
+            <span className="text-bg-500 text-lg sm:text-2xl">
               {isListening
                 ? frequency
                   ? `${frequency.toFixed(2)} Hz`
@@ -151,29 +163,54 @@ function GuitarTuner() {
             </span>
           </div>
         </div>
-        <div className="flex-center relative mb-12 w-full">
-          <div className="-mt-16 space-y-12">
-            <StringNote frequency={146.83} isChecked={tunedNotes.has('D3')} />
-            <StringNote frequency={110.0} isChecked={tunedNotes.has('A2')} />
-            <StringNote frequency={82.41} isChecked={tunedNotes.has('E2')} />
+        <div className="flex-center relative mb-6 w-full gap-4 px-6 sm:mb-12 sm:gap-0">
+          <div className="-mt-12 space-y-8 md:-mt-16 md:space-y-12">
+            {currentTuning
+              .slice(0, 3)
+              .reverse()
+              .map(freq => (
+                <StringNote
+                  key={freq}
+                  frequency={freq}
+                  isChecked={tunedNotes.has(frequencyToNote(freq))}
+                />
+              ))}
           </div>
           <Icon
-            className="text-bg-500 w-128 h-auto"
+            className="text-bg-500 md:w-128 h-auto w-64 sm:w-96"
             icon="qlementine-icons:guitar-24"
           />
-          <div className="-mt-16 space-y-12">
-            <StringNote frequency={196.0} isChecked={tunedNotes.has('G3')} />
-            <StringNote frequency={246.94} isChecked={tunedNotes.has('B3')} />
-            <StringNote frequency={329.63} isChecked={tunedNotes.has('E4')} />
+          <div className="-mt-12 space-y-8 md:-mt-16 md:space-y-12">
+            {currentTuning.slice(3, 6).map(freq => (
+              <StringNote
+                key={freq}
+                frequency={freq}
+                isChecked={tunedNotes.has(frequencyToNote(freq))}
+              />
+            ))}
           </div>
         </div>
-        <Button
-          icon="tabler:microphone"
-          onClick={isListening ? stopListening : startListening}
-        >
-          {isListening ? 'Stop Tuning' : 'Start Tuning'}
-        </Button>
-        {error && <div className="text-red-500">Error: {error}</div>}
+        <div className="flex flex-col gap-4 sm:flex-row">
+          <Button
+            icon="f7:tuningfork"
+            variant="plain"
+            onClick={openSelectTuningModal}
+          >
+            {GUITAR_TUNINGS.map(t => t.items)
+              .flat()
+              .find(
+                t => JSON.stringify(t.freq) === JSON.stringify(currentTuning)
+              )?.name || 'Select Tuning'}
+            <Icon className="ml-2 size-5" icon="tabler:chevron-right" />
+          </Button>
+          <Button
+            icon="tabler:microphone"
+            namespace="apps.guitarTuner"
+            onClick={isListening ? stopListening : startListening}
+          >
+            {isListening ? 'Stop Tuning' : 'Start Tuning'}
+          </Button>
+        </div>
       </div>
     </>
   )
