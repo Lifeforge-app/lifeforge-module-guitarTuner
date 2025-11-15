@@ -5,7 +5,7 @@ export default {
   name: 'Guitar Tuner',
   icon: 'mingcute:guitar-line',
   routes: {
-    'guitar-tuner': lazy(() => import('@'))
+    '/': lazy(() => import('@'))
   },
   category: 'Utilities'
 } satisfies ModuleConfig
