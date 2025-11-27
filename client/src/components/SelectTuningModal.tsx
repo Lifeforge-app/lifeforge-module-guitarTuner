@@ -1,10 +1,8 @@
 import { GUITAR_TUNINGS } from '@/constants/tuning'
 import { frequencyToNote } from '@/utils/frequencyToNote'
 import { Icon } from '@iconify/react'
-import { useDebounce } from '@uidotdev/usehooks'
 import clsx from 'clsx'
-import { ModalHeader, SearchInput } from 'lifeforge-ui'
-import { useState } from 'react'
+import { ModalHeader } from 'lifeforge-ui'
 
 function SelectTuningModal({
   onClose,
@@ -16,23 +14,12 @@ function SelectTuningModal({
     onSelectTuning: (newTuning: number[]) => void
   }
 }) {
-  const [searchQuery, setSearchQuery] = useState('')
-
-  const debouncedSearchQuery = useDebounce(searchQuery, 300)
-
   return (
     <div className="min-w-[40vw]">
       <ModalHeader
         icon="f7:tuningfork"
         title="Select Tuning"
         onClose={onClose}
-      />
-      <SearchInput
-        className="component-bg-lighter mb-6"
-        namespace="apps.guitarTuner"
-        searchTarget="tuning"
-        setValue={setSearchQuery}
-        value={searchQuery}
       />
       {GUITAR_TUNINGS.map(category => (
         <div key={category.category} className="mb-8">
@@ -69,7 +56,7 @@ function SelectTuningModal({
                   {JSON.stringify(tuningOption.freq) ===
                   JSON.stringify(tuning) ? (
                     <Icon
-                      className="text-custom-500 absolute right-2 top-2 size-6 sm:static"
+                      className="text-custom-500 absolute top-2 right-2 size-6 sm:static"
                       icon="uil:check-circle"
                     />
                   ) : null}
