@@ -5,7 +5,7 @@
     "type": "git",
     "url": "https://github.com/lifeforge-app/lifeforge-module-guitarTuner.git"
   },
-  "version": "0.0.1",
+  "version": "0.0.2",
   "author": "Melvin Chia <melvinchia623600@gmail.com>",
   "description": "A utility tool that can help guitar risk when their guitar is out of tune",
   "scripts": {
