@@ -1,0 +1,8 @@
+{
+  "title": "吉他调音器",
+  "description": "一款实用工具，可以帮助吉他手在吉他失去调音时进行调整。",
+  "buttons": {
+    "startTuning": "开始调音",
+    "stopTuning": "停止调音"
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "title": "Guitar Tuner",
+  "description": "A utility tool that can help guitar risk when their guitar is out of tune",
+  "buttons": {
+    "startTuning": "Start Tuning",
+    "stopTuning": "Stop Tuning"
+  }
+}
