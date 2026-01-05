@@ -1,8 +1,0 @@
-{
-  "title": "Penyetup Gitar",
-  "description": "Alat utiliti yang boleh membantu gitaris apabila gitar mereka tidak selaras.",
-  "buttons": {
-    "startTuning": "Mula Menyelaraskan",
-    "stopTuning": "Hentikan Penyelarasan"
-  }
-}
