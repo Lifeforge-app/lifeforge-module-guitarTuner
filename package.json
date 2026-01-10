@@ -9,36 +9,39 @@
   "author": "Melvin Chia <melvinchia623600@gmail.com>",
   "description": "A utility tool that can help guitar risk when their guitar is out of tune",
   "scripts": {
-    "types": "cd client && bun tsc"
+    "types": "cd client && bun tsc",
+    "build:client": "cd client && bun run vite build"
   },
   "dependencies": {
     "@iconify/react": "^6.0.2",
-    "@tanstack/react-query": "^5.90.11",
     "@uidotdev/usehooks": "^2.4.1",
     "clsx": "^2.1.1",
     "dayjs": "^1.11.18",
-    "lifeforge-ui": "workspace:*",
     "pitchy": "^4.1.0",
-    "react": "^19.2.0",
-    "react-i18next": "^15.1.1",
     "react-toastify": "^11.0.5",
-    "shared": "workspace:*",
-    "vite": "^7.1.9",
-    "zod": "^4.1.12"
+    "zod": "^4.3.5"
   },
   "devDependencies": {
+    "@originjs/vite-plugin-federation": "^1.4.1",
+    "@tailwindcss/vite": "^4.1.18",
     "@types/react": "^19.2.0",
     "@types/react-dom": "^19.2.0",
+    "@vitejs/plugin-react": "^4.4.1",
+    "dotenv": "^17.2.3",
+    "tailwindcss": "^4.1.18",
     "vite": "^7.1.9"
-  },
-  "exports": {
-    "./manifest": {
-      "types": "./manifest.d.ts",
-      "default": "./manifest.ts"
-    }
   },
   "lifeforge": {
     "icon": "mingcute:guitar-line",
     "category": "Utilities"
+  },
+  "peerDependencies": {
+    "@tanstack/react-query": "^5.90.2",
+    "i18next": "^25.7.4",
+    "lifeforge-ui": "workspace:*",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "react-i18next": "^16.5.1",
+    "shared": "workspace:*"
   }
 }

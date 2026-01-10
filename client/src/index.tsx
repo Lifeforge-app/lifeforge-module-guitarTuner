@@ -7,12 +7,13 @@ import SelectTuningModal from './components/SelectTuningModal'
 import StringNote from './components/StringNote'
 import { GUITAR_TUNINGS } from './constants/tuning'
 import { useGuitarTuner } from './hooks/useGuitarTuner'
+import './index.css'
 import { frequencyToNote } from './utils/frequencyToNote'
 
 const CENTS_TOLERANCE = 3
 
 function GuitarTuner() {
-  const open = useModalStore(state => state.open)
+  const { open } = useModalStore()
 
   const { frequency, note, cents, isListening, startListening, stopListening } =
     useGuitarTuner()
@@ -86,8 +87,8 @@ function GuitarTuner() {
     <>
       <ModuleHeader />
       <div className="flex-center mb-8 w-full flex-1 flex-col">
-        <div className="before:bg-bg-700 relative top-0 w-full flex-1 transition-all before:absolute before:left-1/2 before:top-0 before:h-full before:w-0.5 before:-translate-x-1/2">
-          <span className="text-bg-500 absolute left-[calc(50%-18rem)] top-16 -translate-x-1/2 text-3xl">
+        <div className="before:bg-bg-700 relative top-0 w-full flex-1 transition-all before:absolute before:top-0 before:left-1/2 before:h-full before:w-0.5 before:-translate-x-1/2">
+          <span className="text-bg-500 absolute top-16 left-[calc(50%-18rem)] -translate-x-1/2 text-3xl">
             ♭
           </span>
           <div
@@ -149,7 +150,7 @@ function GuitarTuner() {
               )}
             </div>
           </div>
-          <span className="text-bg-500 absolute right-[calc(50%-18rem)] top-16 translate-x-1/2 text-3xl">
+          <span className="text-bg-500 absolute top-16 right-[calc(50%-18rem)] translate-x-1/2 text-3xl">
             ♯
           </span>
           <div className="border-bg-700 flex-center component-bg absolute bottom-14 left-1/2 -translate-x-1/2 flex-col gap-3 rounded-lg border-2 p-4">
@@ -177,7 +178,7 @@ function GuitarTuner() {
               ))}
           </div>
           <Icon
-            className="text-bg-500 md:w-128 h-auto w-64 sm:w-96"
+            className="text-bg-500 h-auto w-64 sm:w-96 md:w-128"
             icon="qlementine-icons:guitar-24"
           />
           <div className="-mt-12 space-y-8 md:-mt-16 md:space-y-12">
