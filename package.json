@@ -7,7 +7,7 @@
   },
   "version": "0.0.2",
   "author": "Melvin Chia <melvinchia623600@gmail.com>",
-  "description": "A utility tool that can help guitar risk when their guitar is out of tune",
+  "description": "Tune your guitar to perfection with real-time pitch detection.",
   "scripts": {
     "types": "cd client && bun tsc",
     "build:client": "cd client && bun run vite build"

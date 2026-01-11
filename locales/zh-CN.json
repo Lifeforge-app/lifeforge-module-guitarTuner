@@ -1,6 +1,6 @@
 {
   "title": "吉他调音器",
-  "description": "一款实用工具，可以帮助吉他手在吉他失去调音时进行调整。",
+  "description": "通过实时音高检测，将您的吉他调音至完美。",
   "buttons": {
     "startTuning": "开始调音",
     "stopTuning": "停止调音"

@@ -1,6 +1,6 @@
 {
   "title": "Guitar Tuner",
-  "description": "A utility tool that can help guitar risk when their guitar is out of tune",
+  "description": "Tune your guitar to perfection with real-time pitch detection.",
   "buttons": {
     "startTuning": "Start Tuning",
     "stopTuning": "Stop Tuning"
