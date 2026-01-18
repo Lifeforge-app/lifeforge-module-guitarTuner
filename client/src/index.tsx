@@ -24,7 +24,7 @@ function GuitarTuner() {
     82.41, 110.0, 146.83, 196.0, 246.94, 329.63
   ]) // Standard Tuning EADGBE
 
-  const tuningTimersRef = useRef<Map<string, NodeJS.Timeout>>(new Map())
+  const tuningTimersRef = useRef<Map<string, number>>(new Map())
 
   const openSelectTuningModal = useCallback(() => {
     open(SelectTuningModal, {
