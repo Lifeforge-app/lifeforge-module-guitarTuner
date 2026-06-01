@@ -1,8 +1,10 @@
-import { GUITAR_TUNINGS } from '@/constants/tuning'
-import { frequencyToNote } from '@/utils/frequencyToNote'
 import { Icon } from '@iconify/react'
 import clsx from 'clsx'
-import { ModalHeader } from 'lifeforge-ui'
+
+import { ModalHeader } from '@lifeforge/ui'
+
+import { GUITAR_TUNINGS } from '@/constants/tuning'
+import { frequencyToNote } from '@/utils/frequencyToNote'
 
 function SelectTuningModal({
   onClose,

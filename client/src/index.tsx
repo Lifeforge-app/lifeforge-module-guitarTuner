@@ -1,7 +1,8 @@
 import { Icon } from '@iconify/react'
 import clsx from 'clsx'
-import { Button, ModuleHeader, useModalStore } from 'lifeforge-ui'
 import { useCallback, useEffect, useRef, useState } from 'react'
+
+import { Button, ModuleHeader, useModalStore } from '@lifeforge/ui'
 
 import SelectTuningModal from './components/SelectTuningModal'
 import StringNote from './components/StringNote'
