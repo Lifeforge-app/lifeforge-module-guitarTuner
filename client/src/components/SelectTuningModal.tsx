@@ -1,7 +1,6 @@
-import { Icon } from '@iconify/react'
+import { Icon , ModalHeader } from '@lifeforge/ui'
 import clsx from 'clsx'
 
-import { ModalHeader } from '@lifeforge/ui'
 
 import { GUITAR_TUNINGS } from '@/constants/tuning'
 import { frequencyToNote } from '@/utils/frequencyToNote'

@@ -1,5 +1,5 @@
 import { frequencyToNote } from '@/utils/frequencyToNote'
-import { Icon } from '@iconify/react'
+import { Icon } from '@lifeforge/ui'
 import clsx from 'clsx'
 
 function StringNote({

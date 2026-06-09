@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
-import { toast } from 'react-toastify'
+
+import { toast } from '@lifeforge/ui'
 
 import { frequencyToNote, getCentsDeviation } from '../utils/frequencyToNote'
 import { requestMicrophoneAccess } from '../utils/microphone'
