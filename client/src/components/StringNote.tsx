@@ -1,6 +1,8 @@
-import { frequencyToNote } from '@/utils/frequencyToNote'
-import { Icon } from '@lifeforge/ui'
 import clsx from 'clsx'
+
+import { Icon } from '@lifeforge/ui'
+
+import { frequencyToNote } from '@/utils/frequencyToNote'
 
 function StringNote({
   frequency,
