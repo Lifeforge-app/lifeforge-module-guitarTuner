@@ -11,11 +11,8 @@ export function usePitchDetection(options: UsePitchDetectionOptions = {}) {
   const { bufferSize = 2, clarityThreshold = 0.85, minFrequency = 60 } = options
 
   const [frequency, setFrequency] = useState<number>(0)
-
   const pitchDetectorRef = useRef<PitchDetector<Float32Array> | null>(null)
-
   const frequencyBufferRef = useRef<number[]>([])
-
   const animationFrameRef = useRef<number | null>(null)
 
   const initializeDetector = (fftSize: number) => {
