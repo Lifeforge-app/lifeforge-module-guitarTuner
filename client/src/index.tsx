@@ -7,7 +7,6 @@ import SelectTuningModal from './components/SelectTuningModal'
 import StringNote from './components/StringNote'
 import { GUITAR_TUNINGS } from './constants/tuning'
 import { useGuitarTuner } from './hooks/useGuitarTuner'
-
 import { frequencyToNote } from './utils/frequencyToNote'
 
 const CENTS_TOLERANCE = 3
@@ -206,7 +205,6 @@ function GuitarTuner() {
           </Button>
           <Button
             icon="tabler:microphone"
-            namespace="apps.guitarTuner"
             onClick={isListening ? stopListening : startListening}
           >
             {isListening ? 'Stop Tuning' : 'Start Tuning'}
