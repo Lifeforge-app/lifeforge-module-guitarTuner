@@ -1,7 +1,5 @@
 export async function requestMicrophoneAccess(): Promise<MediaStream> {
   try {
-    console.log('Requesting microphone access...')
-
     const stream = await navigator.mediaDevices.getUserMedia({
       audio: {
         echoCancellation: false,
@@ -9,11 +7,6 @@ export async function requestMicrophoneAccess(): Promise<MediaStream> {
         noiseSuppression: false
       }
     })
-
-    console.log(
-      'Microphone access granted, stream tracks:',
-      stream.getTracks().length
-    )
 
     return stream
   } catch (err) {

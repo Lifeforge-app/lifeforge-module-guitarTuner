@@ -1,9 +1,19 @@
-import clsx from 'clsx'
-
-import { Icon, ModalHeader } from '@lifeforge/ui'
+import {
+  Box,
+  Flex,
+  Icon,
+  ModalHeader,
+  Ring,
+  Stack,
+  Text,
+  colorWithOpacity,
+  surface
+} from '@lifeforge/ui'
 
 import { GUITAR_TUNINGS } from '@/constants/tuning'
 import { frequencyToNote } from '@/utils/frequencyToNote'
+
+import { categoryTitle } from './SelectTuningModal.css'
 
 function SelectTuningModal({
   onClose,
@@ -16,58 +26,86 @@ function SelectTuningModal({
   }
 }) {
   return (
-    <div className="min-w-[40vw]">
+    <Box minWidth="40vw">
       <ModalHeader
         icon="f7:tuningfork"
         title="Select Tuning"
         onClose={onClose}
       />
-      {GUITAR_TUNINGS.map(category => (
-        <div key={category.category} className="mb-8">
-          <h2 className="mb-4 pb-1 text-lg font-semibold">
-            {category.category}
-          </h2>
-          <div className="flex flex-col gap-3">
-            {category.items.map(tuningOption => (
-              <button
-                key={tuningOption.name}
-                className={clsx(
-                  'component-bg-lighter-with-hover flex-between relative w-full flex-col gap-4 rounded-lg p-4 px-5 sm:flex-row',
+      <Stack gap="2xl">
+        {GUITAR_TUNINGS.map(category => (
+          <Box key={category.category} mb="xl">
+            <Text as="h2" className={categoryTitle} mb="md" pb="xs" size="lg" weight="semibold">
+              {category.category}
+            </Text>
+            <Stack gap="sm">
+              {category.items.map(tuningOption => {
+                const isSelected =
                   JSON.stringify(tuningOption.freq) === JSON.stringify(tuning)
-                    ? 'outline-custom-500 outline outline-2'
-                    : ''
-                )}
-                onClick={() => {
-                  onSelectTuning(tuningOption.freq)
-                  onClose()
-                }}
-              >
-                <span className="w-full text-left">{tuningOption.name}</span>
-                <div className="flex items-center gap-4">
-                  <div className="flex flex-wrap gap-1 sm:flex-nowrap">
-                    {tuningOption.freq.map(freq => (
-                      <div
-                        key={freq}
-                        className="flex-center bg-bg-700/50 size-9 rounded-md text-sm"
-                      >
-                        {frequencyToNote(freq)}
-                      </div>
-                    ))}
-                  </div>
-                  {JSON.stringify(tuningOption.freq) ===
-                  JSON.stringify(tuning) ? (
-                    <Icon
-                      className="text-custom-500 absolute top-2 right-2 size-6 sm:static"
-                      icon="uil:check-circle"
-                    />
-                  ) : null}
-                </div>
-              </button>
-            ))}
-          </div>
-        </div>
-      ))}
-    </div>
+
+                return (
+                  <Ring
+                    key={tuningOption.name}
+                    asChild
+                    ringColor="custom-500"
+                    ringWidth={isSelected ? '2px' : '0px'}
+                  >
+                    <Flex
+                      align="center"
+                      as="button"
+                      bg={surface.lightInteractive}
+                      direction={{ base: 'column', sm: 'row' }}
+                      gap="md"
+                      justify="between"
+                      p="md"
+                      position="relative"
+                      px="lg"
+                      r="lg"
+                      width="100%"
+                      onClick={() => {
+                        onSelectTuning(tuningOption.freq)
+                        onClose()
+                      }}
+                    >
+                      <Text>{tuningOption.name}</Text>
+                      <Flex align="center" gap="md">
+                        <Flex gap="xs" wrap={{ base: 'wrap', sm: 'nowrap' }}>
+                          {tuningOption.freq.map(freq => (
+                            <Flex
+                              key={freq}
+                              align="center"
+                              bg={colorWithOpacity('bg-700', '50%')}
+                              height="2.25rem"
+                              justify="center"
+                              r="md"
+                              width="2.25rem"
+                            >
+                              <Text size="sm">{frequencyToNote(freq)}</Text>
+                            </Flex>
+                          ))}
+                        </Flex>
+                        {isSelected && (
+                          <Icon
+                            color="custom-500"
+                            icon="uil:check-circle"
+                            position={{ base: 'absolute', sm: 'static' }}
+                            size="1.5rem"
+                            style={{
+                              top: '0.5rem',
+                              right: '0.5rem'
+                            }}
+                          />
+                        )}
+                      </Flex>
+                    </Flex>
+                  </Ring>
+                )
+              })}
+            </Stack>
+          </Box>
+        ))}
+      </Stack>
+    </Box>
   )
 }
 
