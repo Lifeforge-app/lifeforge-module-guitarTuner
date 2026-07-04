@@ -1,6 +1,5 @@
 import {
   Bordered,
-  Box,
   Flex,
   Icon,
   Text,
@@ -51,7 +50,8 @@ function StringNote({
           {noteName}
         </Text>
         {isChecked && (
-          <Box
+          <Flex
+          centered
             bg={surface.default}
             height="1.5rem"
             position="absolute"
@@ -66,7 +66,7 @@ function StringNote({
             width="1.5rem"
           >
             <Icon color="green-500" icon="uil:check" size="1em" />
-          </Box>
+          </Flex>
         )}
       </Flex>
     </Bordered>

@@ -3,7 +3,7 @@ import { createContext, useContext, useEffect, useRef, useState } from 'react'
 import { useGuitarTuner } from '../hooks/useGuitarTuner'
 import { frequencyToNote } from '../utils/frequencyToNote'
 
-const CENTS_TOLERANCE = 3
+export const CENTS_TOLERANCE = 6
 
 interface GuitarTunerContextValue {
   frequency: number | null

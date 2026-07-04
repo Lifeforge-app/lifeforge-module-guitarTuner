@@ -2,9 +2,12 @@ import { Bordered, Box, Flex, Icon, Text } from '@lifeforge/ui'
 
 import { frequencyToNote } from '@/utils/frequencyToNote'
 
-import { indicatorArrow } from './PitchIndicator.css'
-import { useGuitarTunerContext } from '../contexts/GuitarTunerContext'
+import {
+  CENTS_TOLERANCE,
+  useGuitarTunerContext
+} from '../contexts/GuitarTunerContext'
 import AccidentalLabel from './AccidentalLabel'
+import { indicatorArrow } from './PitchIndicator.css'
 
 function PitchIndicator() {
   const { cents, toneColor, currentTuning, note, frequency, absCents } =
@@ -16,7 +19,11 @@ function PitchIndicator() {
       <Box
         className={indicatorArrow}
         height="4rem"
-        left={Math.abs(cents) <= 3 ? '50%' : `calc(50% + ${cents * 0.2}%)`}
+        left={
+          Math.abs(cents) <= CENTS_TOLERANCE
+            ? '50%'
+            : `calc(50% + ${cents * 0.2}%)`
+        }
         position="absolute"
         style={{
           transform: 'translateX(-50%)'
@@ -43,7 +50,7 @@ function PitchIndicator() {
           >
             {frequency === 0 ? (
               <></>
-            ) : absCents <= 3 &&
+            ) : absCents <= CENTS_TOLERANCE &&
               currentTuning.map(frequencyToNote).includes(note) ? (
               <Icon icon="tabler:check" size="2rem" />
             ) : (
