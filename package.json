@@ -6,11 +6,13 @@
     "url": "https://github.com/lifeforge-app/lifeforge-module-guitarTuner.git"
   },
   "version": "0.0.5",
+  "type": "module",
   "author": "Melvin Chia <melvinchia623600@gmail.com>",
   "description": "Tune your guitar to perfection with real-time pitch detection.",
   "scripts": {
-    "types": "cd client && bun tsc",
-    "build:client": "cd client && bun run vite build"
+    "typecheck": "cd client && tsc",
+    "build": "build:client",
+    "build:client": "cd client && vite build"
   },
   "dependencies": {
     "pitchy": "^4.1.0"
