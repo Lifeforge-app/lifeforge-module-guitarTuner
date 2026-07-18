@@ -35,7 +35,14 @@ function SelectTuningModal({
       <Stack gap="2xl">
         {GUITAR_TUNINGS.map(category => (
           <Box key={category.category} mb="xl">
-            <Text as="h2" className={categoryTitle} mb="md" pb="xs" size="lg" weight="semibold">
+            <Text
+              as="h2"
+              className={categoryTitle}
+              mb="md"
+              pb="xs"
+              size="lg"
+              weight="semibold"
+            >
               {category.category}
             </Text>
             <Stack gap="sm">

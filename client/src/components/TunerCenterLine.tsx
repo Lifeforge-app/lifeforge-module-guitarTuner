@@ -1,8 +1,8 @@
 import { Box, Transition } from '@lifeforge/ui'
 
-import { centerLine } from './TunerCenterLine.css'
 import NoteDisplay from './NoteDisplay'
 import PitchIndicator from './PitchIndicator'
+import { centerLine } from './TunerCenterLine.css'
 
 function TunerCenterLine() {
   return (

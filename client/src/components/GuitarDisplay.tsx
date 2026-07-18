@@ -2,8 +2,8 @@ import { Flex, Icon } from '@lifeforge/ui'
 
 import { frequencyToNote } from '@/utils/frequencyToNote'
 
-import { customMarginTop } from './GuitarDisplay.css'
 import { useGuitarTunerContext } from '../contexts/GuitarTunerContext'
+import { customMarginTop } from './GuitarDisplay.css'
 import StringNote from './StringNote'
 
 function GuitarDisplay() {

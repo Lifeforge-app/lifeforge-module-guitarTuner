@@ -90,7 +90,7 @@ export function GuitarTunerProvider({
           : 'red'
 
   return (
-    <GuitarTunerContext.Provider
+    <GuitarTunerContext
       value={{
         frequency,
         note,
@@ -106,7 +106,7 @@ export function GuitarTunerProvider({
       }}
     >
       {children}
-    </GuitarTunerContext.Provider>
+    </GuitarTunerContext>
   )
 }
 

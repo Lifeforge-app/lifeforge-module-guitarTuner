@@ -70,9 +70,7 @@ export function AudioPlaybackProvider({
   )
 
   return (
-    <AudioPlaybackContext.Provider value={{ playNote }}>
-      {children}
-    </AudioPlaybackContext.Provider>
+    <AudioPlaybackContext value={{ playNote }}>{children}</AudioPlaybackContext>
   )
 }
 

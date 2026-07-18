@@ -8,8 +8,13 @@ import { useGuitarTunerContext } from '../contexts/GuitarTunerContext'
 import SelectTuningModal from './SelectTuningModal'
 
 function ActionButtons() {
-  const { currentTuning, isListening, setCurrentTuning, startListening, stopListening } =
-    useGuitarTunerContext()
+  const {
+    currentTuning,
+    isListening,
+    setCurrentTuning,
+    startListening,
+    stopListening
+  } = useGuitarTunerContext()
 
   const { open } = useModalStore()
 
@@ -31,9 +36,8 @@ function ActionButtons() {
       >
         {GUITAR_TUNINGS.map(t => t.items)
           .flat()
-          .find(
-            t => JSON.stringify(t.freq) === JSON.stringify(currentTuning)
-          )?.name || 'Select Tuning'}
+          .find(t => JSON.stringify(t.freq) === JSON.stringify(currentTuning))
+          ?.name || 'Select Tuning'}
         <Icon icon="tabler:chevron-right" />
       </Button>
       <Button

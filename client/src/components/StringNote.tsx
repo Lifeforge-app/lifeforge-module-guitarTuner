@@ -51,7 +51,7 @@ function StringNote({
         </Text>
         {isChecked && (
           <Flex
-          centered
+            centered
             bg={surface.default}
             height="1.5rem"
             position="absolute"
