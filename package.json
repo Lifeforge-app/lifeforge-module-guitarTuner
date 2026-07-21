@@ -11,7 +11,7 @@
   "description": "Tune your guitar to perfection with real-time pitch detection.",
   "scripts": {
     "typecheck": "cd client && tsc",
-    "build": "build:client",
+    "build": "pnpm run build:client",
     "build:client": "cd client && vite build"
   },
   "dependencies": {

@@ -1,8 +1,8 @@
 import { lazy } from 'react'
 
-import { createForgeModuleClient } from '@lifeforge/federation'
+import { createForgeModule } from '@lifeforge/federation'
 
-const { forgeAPI, ...manifest } = createForgeModuleClient({
+const { forgeAPI, ...manifest } = createForgeModule({
   routes: {
     '/': lazy(() => import('@'))
   }
