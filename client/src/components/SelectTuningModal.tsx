@@ -45,7 +45,7 @@ function SelectTuningModal({
             >
               {category.category}
             </Text>
-            <Stack gap="sm">
+            <Stack>
               {category.items.map(tuningOption => {
                 const isSelected =
                   JSON.stringify(tuningOption.freq) === JSON.stringify(tuning)
